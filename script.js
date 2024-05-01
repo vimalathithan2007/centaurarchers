@@ -25,6 +25,11 @@ function showHidePlayer() {
     playersTxt.forEach(pt => pt.classList.toggle("hide"))
 }
 
+function showHideDob() {
+    var playersTxt = document.querySelectorAll(".form-control input:nth-child(2)");
+    playersTxt.forEach(pt => pt.classList.toggle("hide"))
+}
+
 function compare() {
     var div = document.querySelector(".flex-2-col");
     div.classList.toggle("compare");
