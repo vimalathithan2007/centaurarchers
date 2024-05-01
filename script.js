@@ -18,6 +18,8 @@ dates.forEach(date=>date.addEventListener('keyup',function(){
     var vv = date.value.trim()
     if (vv !="" && vv !=undefined) {
         lbl.innerHTML = calculate(vv);
+    } else {
+        lbl.innerHTML = "";
     }
 }))
 
@@ -36,4 +38,12 @@ function showHideDob() {
 function compare() {
     var div = document.querySelector(".flex-2-col");
     div.classList.toggle("compare");
+}
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
 }
