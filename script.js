@@ -15,7 +15,10 @@ function calculate(value) {
 }
 dates.forEach(date=>date.addEventListener('keyup',function(){
     var lbl = date.parentNode.querySelector(".out")
-    lbl.innerHTML = calculate(date.value)
+    var vv = date.value.trim()
+    if (vv !="" && vv !=undefined) {
+        lbl.innerHTML = calculate(vv);
+    }
 }))
 
 //console.log('OUT:'+calculate(123))
