@@ -47,3 +47,42 @@ function isNumber(evt) {
     }
     return true;
 }
+
+function addBox(clz) {
+    
+     var div= "<div class='center mb-5'><div><input type='text' class='auto-text'/>  <button class='sm-btn' onclick='removeBox(this)'>X</button></div></div>";
+     var n = document.querySelector(clz);
+     console.log()
+     n.innerHTML = n.innerHTML + div
+
+
+}
+function removeBox(ele) {
+    ele.parentNode.classList.add('hide');
+}
+
+function pickPlayers(players, k) {
+    const result = [];
+    
+    function backtrack(start, currCombo) {
+        if (currCombo.length === k) {
+            result.push([...currCombo]);
+            return;
+        }
+        
+        for (let i = start; i < players.length; i++) {
+            currCombo.push(players[i]);
+            backtrack(i + 1, currCombo);
+            currCombo.pop();
+        }
+    }
+    
+    backtrack(0, []);
+    
+    return result;
+}
+
+const allPlayers = ['Player1', 'Player2', 'Player3'];
+const selectedPlayers = pickPlayers(allPlayers, 2);
+
+console.log(selectedPlayers);

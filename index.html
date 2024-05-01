@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="heading">CENTAUR ARCHERS</h1>
+        <h1 class="heading">CENTAUR ARCHER</h1>
         <div class="center">
             <button class="btn player-btn" onclick="showHidePlayer()">Show/Hide Players</button>
             <button class="btn player-btn" onclick="showHideDob()">Show/Hide DOB</button>
@@ -168,6 +168,69 @@
                     <label class="out"></label> 
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="heading">Team 1</h1>
+        <div >
+           
+            <div class="team1-wk mb-25">
+                <div class="center mb-5">
+                    <h2>Wicket Keeper &nbsp;&nbsp;&nbsp;<button class="sm-btn" onclick="addBox('.team1-wk-box')">+</button></h2>            
+                </div>
+                <div class="team1-wk-box">
+                   <div class='center mb-5'>
+                        <div>
+                            <input type="text" class="auto-text"/>
+                            <button class="sm-btn" onclick="removeBox(this)">X</button>
+                        </div>
+                   </div>
+                </div> 
+            </div>
+
+            <div class="team1-bm mb-25">
+                <div class="center mb-5">
+                    <h2>Batsman &nbsp;&nbsp;&nbsp;<button class="sm-btn" onclick="addBox('.team1-bm-box')">+</button></h2>        
+                </div>
+                <div class="team1-bm-box">
+                   <div class='center mb-5'>
+                        <div>
+                            <input type="text" class="auto-text"/>
+                            <button class="sm-btn" onclick="removeBox(this)">X</button>
+                        </div>
+                   </div>
+                </div> 
+            </div>
+
+            <div class="team1-ar mb-25">
+                <div class="center mb-5">
+                    <h2>All Rounder &nbsp;&nbsp;&nbsp;<button class="sm-btn" onclick="addBox('.team1-ar-box')">+</button></h2>
+                </div>
+                <div class="team1-ar-box">
+                   <div class='center mb-5'>
+                        <div>
+                            <input type="text" class="auto-text"/>
+                            <button class="sm-btn" onclick="removeBox(this)">X</button>
+                        </div>
+                   </div>
+                </div> 
+            </div>
+
+            <div class="team1-bo mb-25">
+                <div class="center mb-5">
+                    <h2>Bowler &nbsp;&nbsp;&nbsp;<button class="sm-btn" onclick="addBox('.team1-bo-box')">+</button></h2>
+                    
+                </div>
+                <div class="team1-bo-box">
+                   <div class='center mb-5'>
+                        <div>
+                            <input type="text" class="auto-text"/>
+                            <button class="sm-btn" onclick="removeBox(this)">X</button>
+                        </div>
+                   </div>
+                </div> 
+            </div>
+
         </div>
     </div>
     
