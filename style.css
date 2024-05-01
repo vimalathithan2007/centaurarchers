@@ -77,3 +77,8 @@ h2 {
 .auto-text {
     height:30px;
 }
+.label { color:rgba(241, 196, 15,1.0); }
+.list {
+    padding:15px;
+    color:rgba(255, 165, 2,1.0);
+}

@@ -82,7 +82,153 @@ function pickPlayers(players, k) {
     return result;
 }
 
-const allPlayers = ['Player1', 'Player2', 'Player3'];
-const selectedPlayers = pickPlayers(allPlayers, 2);
+//const allPlayers = ['Player1', 'Player2', 'Player3'];
+//const selectedPlayers = pickPlayers(allPlayers, 2);
+//console.log(selectedPlayers);
 
-console.log(selectedPlayers);
+function calculateCombination() {
+
+    var team1WkBoxArr = getBoxByClass('.team1-wk-box input')
+    var team1BmBoxArr = getBoxByClass('.team1-bm-box input')
+    var team1ArBoxArr = getBoxByClass('.team1-ar-box input')
+    var team1BoBoxArr = getBoxByClass('.team1-bo-box input')
+
+    var team2WkBoxArr = getBoxByClass('.team2-wk-box input')
+    var team2BmBoxArr = getBoxByClass('.team2-bm-box input')
+    var team2ArBoxArr = getBoxByClass('.team2-ar-box input')
+    var team2BoBoxArr = getBoxByClass('.team2-bo-box input')
+
+    var wk = []
+    team1WkBoxArr.forEach(a=>wk.push(a))
+    team2WkBoxArr.forEach(a=>wk.push(a))
+
+    var bm = []
+    team1BmBoxArr.forEach(a=>bm.push(a))
+    team2BmBoxArr.forEach(a=>bm.push(a))
+
+    var ar = []
+    team1ArBoxArr.forEach(a=>ar.push(a))
+    team2ArBoxArr.forEach(a=>ar.push(a))
+
+    var bo = []
+    team1BoBoxArr.forEach(a=>bo.push(a))
+    team2BoBoxArr.forEach(a=>bo.push(a))
+
+    console.log(wk)
+    console.log(bm)
+    console.log(ar)
+    console.log(bo) 
+
+    var t1wk = document.querySelector("#t1wk").value
+    var t2wk = document.querySelector("#t2wk").value
+    var t1bm = document.querySelector("#t1bm").value
+    var t2bm = document.querySelector("#t2bm").value
+    var t1ar = document.querySelector("#t1ar").value
+    var t2ar = document.querySelector("#t2ar").value
+    var t1bo = document.querySelector("#t1bo").value
+    var t2bo = document.querySelector("#t2bo").value
+    if (t1wk.trim()!="" && t1wk!= undefined) {
+        t1wk = parseInt(t1wk)
+    } 
+    else {
+        t1wk=0
+    }
+    if (t2wk.trim()!="" && t2wk!= undefined) {
+        t2wk = parseInt(t2wk)
+    }
+    else {
+        t2wk=0
+    }
+    if (t1bm.trim()!="" && t1bm!= undefined) {
+        t1bm = parseInt(t1bm)
+    }
+    else {
+        t1bm=0
+    }
+    if (t2bm.trim()!="" && t2bm!= undefined) {
+        t2bm = parseInt(t2bm)
+    }
+    else {
+        t2bm=0
+    }
+    if (t1ar.trim()!="" && t1ar!= undefined) {
+        t1ar = parseInt(t1ar)
+    }
+    else {
+        t1ar=0
+    }
+    if (t2ar.trim()!="" && t2ar!= undefined) {
+        t2ar = parseInt(t2ar)
+    }
+    else {
+        t2ar=0
+    }
+    if (t1bo.trim()!="" && t1bo!= undefined) {
+        t1bo = parseInt(t1bo)
+    }
+    else {
+        t1bo=0
+    }
+    if (t2bo.trim()!="" && t2bo!= undefined) {
+        t2bo = parseInt(t2bo)
+    }
+    else {
+        t2bo=0
+    }
+    console.log(t1wk+t2wk)
+    console.log(t1bm+t2bm)
+    console.log(t1ar+t2ar)
+    console.log(t1bo+t2bo)
+
+    var wkArr = pickPlayers(wk, t1wk+t2wk)
+    var bmArr = pickPlayers(bm, t1bm+t2bm)
+    var arArr = pickPlayers(ar, t1ar+t2ar)
+    var boArr = pickPlayers(bo, t1bo+t2bo)
+
+    console.log(wkArr)
+    console.log(bmArr)
+    console.log(arArr)
+    console.log(boArr)
+    
+    let z = '<h2>Wicket Keeper</h2>'
+    for (let x of wkArr) {
+        let y = x.join(",")
+        z = z + `<div class='list'>${y}</div>`
+    }
+    document.querySelector(".wk-list").innerHTML = z
+
+    z = '<h2>Batsman</h2>'
+    for (let x of bmArr) {
+        let y = x.join(",")
+        z = z + `<div class='list'>${y}</div>`
+    }
+    document.querySelector(".bm-list").innerHTML = z
+
+    z = '<h2>All Rounder</h2>'
+    for (let x of arArr) {
+        let y = x.join(",")
+        z = z + `<div class='list'>${y}</div>`
+    }
+    document.querySelector(".ar-list").innerHTML = z
+
+    z = '<h2>Bowler</h2>'
+    for (let x of boArr) {
+        let y = x.join(",")
+        z = z + `<div class='list'>${y}</div>`
+    }
+    document.querySelector(".bo-list").innerHTML = z
+
+
+
+}
+
+function getBoxByClass(clz) {
+  var inputs = document.querySelectorAll(clz);
+  var inputArr = [];
+  inputs.forEach(input=> {
+    if (input.value.trim()!="" && input.value!=undefined) {
+        inputArr.push(input.value)
+    }
+  } )
+  return inputArr;
+}
