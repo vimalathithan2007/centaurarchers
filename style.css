@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    margin:50px;
+    background:rgba(44, 62, 80,1.0);
+}
+.heading {
+    color:rgba(241, 196, 15,1.0);
+    letter-spacing: 2px;
+    text-align: center;
+    padding:20px;
+}
