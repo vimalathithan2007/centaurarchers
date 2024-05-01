@@ -98,27 +98,6 @@ function calculateCombination() {
     var team2ArBoxArr = getBoxByClass('.team2-ar-box input')
     var team2BoBoxArr = getBoxByClass('.team2-bo-box input')
 
-    var wk = []
-    team1WkBoxArr.forEach(a=>wk.push(a))
-    team2WkBoxArr.forEach(a=>wk.push(a))
-
-    var bm = []
-    team1BmBoxArr.forEach(a=>bm.push(a))
-    team2BmBoxArr.forEach(a=>bm.push(a))
-
-    var ar = []
-    team1ArBoxArr.forEach(a=>ar.push(a))
-    team2ArBoxArr.forEach(a=>ar.push(a))
-
-    var bo = []
-    team1BoBoxArr.forEach(a=>bo.push(a))
-    team2BoBoxArr.forEach(a=>bo.push(a))
-
-    console.log(wk)
-    console.log(bm)
-    console.log(ar)
-    console.log(bo) 
-
     var t1wk = document.querySelector("#t1wk").value
     var t2wk = document.querySelector("#t2wk").value
     var t1bm = document.querySelector("#t1bm").value
@@ -175,6 +154,60 @@ function calculateCombination() {
     else {
         t2bo=0
     }
+
+    var wk = []
+    for (let a of team1WkBoxArr) {
+        if (t1wk > 0) {
+            wk.push(a);
+        }
+    }
+    for (let a of team2WkBoxArr) {
+        if (t2wk > 0) {
+            wk.push(a);
+        }
+    }
+    var bm = []
+    for (let a of team1BmBoxArr) {
+        if (t1bm > 0) {
+            bm.push(a);
+        }
+    }
+    for (let a of team2BmBoxArr) {
+        if (t2bm > 0) {
+            bm.push(a);
+        }
+    }
+
+    var ar = []
+    for (let a of team1ArBoxArr) {
+        if (t1ar > 0) {
+            ar.push(a);
+        }
+    }
+    for (let a of team2ArBoxArr) {
+        if (t2ar > 0) {
+            ar.push(a);
+        }
+    }
+
+    var bo = []
+    for (let a of team1BoBoxArr) {
+        if (t1bo > 0) {
+            bo.push(a);
+        }
+    }
+    for (let a of team2BoBoxArr) {
+        if (t2bo > 0) {
+            bo.push(a);
+        }
+    }
+
+    console.log('WK:'+wk)
+    console.log('BM:'+bm)
+    console.log('AR:'+ar)
+    console.log('BO'+bo) 
+
+   
     console.log(t1wk+t2wk)
     console.log(t1bm+t2bm)
     console.log(t1ar+t2ar)
