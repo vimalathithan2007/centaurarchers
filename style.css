@@ -13,3 +13,31 @@
     text-align: center;
     padding:20px;
 }
+
+.flex-2-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: scroll;
+}
+.flex-2-col > div {
+    width:50%;
+    margin:auto;
+   
+}
+.form-control {
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    margin-top: 10px;
+}
+.mb-5 { margin-bottom:15px; }
+.form-control input {
+    height:40px;
+    width:35%;
+}
+.form-control label {
+    color:rgba(241, 196, 15,1.0);
+    font-size: 32px;
+    width:15%;
+}
