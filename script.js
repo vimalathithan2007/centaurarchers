@@ -19,3 +19,13 @@ dates.forEach(date=>date.addEventListener('keyup',function(){
 }))
 
 //console.log('OUT:'+calculate(123))
+
+function showHidePlayer() {
+    var playersTxt = document.querySelectorAll(".form-control input:first-child");
+    playersTxt.forEach(pt => pt.classList.toggle("hide"))
+}
+
+function compare() {
+    var div = document.querySelector(".flex-2-col");
+    div.classList.toggle("compare");
+}
