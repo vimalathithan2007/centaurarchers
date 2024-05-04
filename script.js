@@ -1,3 +1,64 @@
+function getMyOutput() {
+    var myNumber = parseInt(document.querySelector("#myNumber").value)
+    if (myNumber==undefined || myNumber == "" || myNumber==NaN || myNumber<1 || myNumber>9) {
+        alert("Enter a number between 1 & 9 in MyNumber")
+        return ;
+    }
+    var pickPlayersNo = parseInt(document.querySelector("#pickPlayersNo").value)
+    if(pickPlayersNo == "" || pickPlayersNo == NaN || pickPlayers < 1 || pickPlayers > 11) {
+        alert('Please enter a valid number between 1 & 11.')
+        return ;
+    }
+    var divs  = document.querySelectorAll(".flex-2-col > div")
+    var team1 = divs[0]
+    var team2 = divs[1]
+    var t1fc = team1.querySelectorAll(".form-control")
+    var t2fc = team2.querySelectorAll(".form-control")
+    const map = new Map()
+    for(let fc of t1fc) {
+        let name = fc.querySelector("input:first-child").value
+        let out = fc.querySelector("label.out").innerHTML
+        if (out.includes("(")) {
+          out = out.split("(")[0]
+        }
+        if( name.trim()!="" && out.trim()!="" ) {
+          map.set(name,parseInt(out))
+        }  
+    }
+    for(let fc of t2fc) {
+        let name = fc.querySelector("input:first-child").value
+        let out = fc.querySelector("label.out").innerHTML
+        if (out.includes("(")) {
+          out = out.split("(")[0]
+        }
+        if( name.trim()!="" && out.trim()!="" ) {
+          map.set(name,parseInt(out))
+        }  
+    }
+    //console.log(map)
+    let players = [...map.keys()];
+    let playerCombination = pickPlayers(players,pickPlayersNo)
+
+    let finalOut = []
+    for(let pc of playerCombination) {
+        let sum = 0
+        for (let p of pc) {
+            sum = sum + map.get(p)
+        }
+        if (myNumber ==calculate(sum)) {
+            finalOut.push(pc.join(","))
+        }
+    }
+    var finalEleven = document.querySelector("#final-eleven")
+    finalEleven.innerHTML = ""
+    for(let fo of finalOut) {
+        finalEleven.innerHTML = finalEleven.innerHTML + `<div class='list'>${fo}</div>`
+    }
+    if(finalOut.length==0) {
+        finalEleven.innerHTML = "<div class='list'>No output match</div>"
+    }
+}
+
 var dates = document.querySelectorAll(".date");
 function calculate(value) {
     var x = parseInt(value);
@@ -9,7 +70,17 @@ function calculate(value) {
         }   
         y = x%10; 
         x= Math.floor(x/10); 
-        sum= sum+y;         
+        sum= sum+y; 
+    }
+    return sum;
+}
+function repeatedSum(value) {
+    var x = parseInt(value)
+    var y = 0 ,sum=0;
+    while(x!=0) {
+        y = x%10;
+        x = Math.floor(x/10)
+        sum = sum + y
     }
     return sum;
 }
@@ -17,7 +88,7 @@ dates.forEach(date=>date.addEventListener('keyup',function(){
     var lbl = date.parentNode.querySelector(".out")
     var vv = date.value.trim()
     if (vv !="" && vv !=undefined) {
-        lbl.innerHTML = calculate(vv);
+        lbl.innerHTML = calculate(vv) +"("+repeatedSum(vv)+")";
     } else {
         lbl.innerHTML = "";
     }
@@ -54,7 +125,6 @@ function addBox(clz) {
      var n = document.querySelector(clz);
      console.log()
      n.innerHTML = n.innerHTML + div
-
 
 }
 function removeBox(ele) {
@@ -154,74 +224,45 @@ function calculateCombination() {
     else {
         t2bo=0
     }
-
-    var wk = []
-    for (let a of team1WkBoxArr) {
-        if (t1wk > 0) {
-            wk.push(a);
-        }
-    }
-    for (let a of team2WkBoxArr) {
-        if (t2wk > 0) {
-            wk.push(a);
-        }
-    }
-    var bm = []
-    for (let a of team1BmBoxArr) {
-        if (t1bm > 0) {
-            bm.push(a);
-        }
-    }
-    for (let a of team2BmBoxArr) {
-        if (t2bm > 0) {
-            bm.push(a);
-        }
-    }
-
-    var ar = []
-    for (let a of team1ArBoxArr) {
-        if (t1ar > 0) {
-            ar.push(a);
-        }
-    }
-    for (let a of team2ArBoxArr) {
-        if (t2ar > 0) {
-            ar.push(a);
-        }
-    }
-
-    var bo = []
-    for (let a of team1BoBoxArr) {
-        if (t1bo > 0) {
-            bo.push(a);
-        }
-    }
-    for (let a of team2BoBoxArr) {
-        if (t2bo > 0) {
-            bo.push(a);
-        }
-    }
-
-    console.log('WK:'+wk)
-    console.log('BM:'+bm)
-    console.log('AR:'+ar)
-    console.log('BO'+bo) 
-
    
-    console.log(t1wk+t2wk)
-    console.log(t1bm+t2bm)
-    console.log(t1ar+t2ar)
-    console.log(t1bo+t2bo)
+    var wkArr1 = pickPlayers(team1WkBoxArr, t1wk)
+    var bmArr1 = pickPlayers(team1BmBoxArr, t1bm)
+    var arArr1 = pickPlayers(team1ArBoxArr, t1ar)
+    var boArr1 = pickPlayers(team1BoBoxArr, t1bo)
 
-    var wkArr = pickPlayers(wk, t1wk+t2wk)
-    var bmArr = pickPlayers(bm, t1bm+t2bm)
-    var arArr = pickPlayers(ar, t1ar+t2ar)
-    var boArr = pickPlayers(bo, t1bo+t2bo)
+    var wkArr2 = pickPlayers(team2WkBoxArr, t2wk)
+    var bmArr2 = pickPlayers(team2BmBoxArr, t2bm)
+    var arArr2 = pickPlayers(team2ArBoxArr, t2ar)
+    var boArr2 = pickPlayers(team2BoBoxArr, t2bo)
 
-    console.log(wkArr)
-    console.log(bmArr)
-    console.log(arArr)
-    console.log(boArr)
+    var wkArr = []
+    for(let a of wkArr1) {
+      for (let b of wkArr2) {
+        wkArr.push(a.concat(b))
+      }
+    }
+
+    var bmArr = []
+    for(let a of bmArr1) {
+      for (let b of bmArr2) {
+        bmArr.push(a.concat(b))
+      }
+    }
+
+    var arArr = []
+    for(let a of arArr1) {
+      for (let b of arArr2) {
+        arArr.push(a.concat(b))
+      }
+    }
+
+    var boArr = []
+    for(let a of boArr1) {
+      for (let b of boArr2) {
+        boArr.push(a.concat(b))
+      }
+    }
+
     
     let z = '<h2>Wicket Keeper</h2>'
     for (let x of wkArr) {
